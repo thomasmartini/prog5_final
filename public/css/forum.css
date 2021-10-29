@@ -3,6 +3,16 @@ body {
     padding: 20px;
     background: #f1f1f1;
 }
+a {
+    color: #0060B6;
+    text-decoration: none;
+}
+
+a:hover {
+    color:#00A0C6;
+    text-decoration:none;
+    cursor:pointer;
+}
 
 /* Header/Blog Title */
 .header {

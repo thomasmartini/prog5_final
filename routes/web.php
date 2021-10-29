@@ -20,3 +20,11 @@ Route::get('/', function () {
 
     ]);
 });
+
+Route::get('/forum/{post}', function($id){
+    return view('post',[
+
+        'post' => Post::findOrFail($id)
+    ]);
+
+});

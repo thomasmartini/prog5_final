@@ -21,10 +21,17 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/forum/{post}', function($id){
+Route::get('forum/{post:slug}', function(Post $post){
     return view('post',[
 
-        'post' => Post::findOrFail($id)
+        'post' => $post
+    ]);
+
+});
+
+Route::get('categories/{category}', function(\App\Models\Category $category ){
+    return view('forum', [
+        'posts' => $category->posts
     ]);
 
 });

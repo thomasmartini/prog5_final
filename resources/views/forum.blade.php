@@ -21,10 +21,11 @@
     <div class="leftcolumn">
         @foreach($posts as $post)
         <div class="card">
-            <a href="/forum/{{$post->id}}"> <h2>{{$post->title}}</h2>
+            <a href="/categories/{{$post->category->id}}">{{$post->category->name}}</a>
+            <a href="/forum/{{$post->slug}}"> <h2>{{$post->title}}</h2>
             <h5>{{$post->excerpt}}</h5>
             <div class="fakeimg" style="height:200px;">Image</div>
-            <p>Some text..</p>
+
             </a>
         </div>
         @endforeach

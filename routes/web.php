@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\PostController;
 use App\Models\Category;
-use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +24,8 @@ Route::get('forum/{post:slug}', [PostController::class, 'showPost']);
 
 Route::get('categories/{category}', function(Category $category ){
     return view('forum', [
-        'posts' => $category->posts->load(['category', 'user'])
+        'posts' => $category->posts->load(['category', 'user']),
+        'categories' => Category::all()
     ]);
 
 });
@@ -33,7 +33,8 @@ Route::get('categories/{category}', function(Category $category ){
 
 Route::get('authors/{user}', function(User $user ){
     return view('forum', [
-        'posts' => $user->posts->load(['category', 'user'])
+        'posts' => $user->posts->load(['category', 'user']),
+        'categories' => Category::all()
     ]);
 
 });

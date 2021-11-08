@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,7 +33,16 @@ Route::get('forum/{post:slug}', function(Post $post){
 
 Route::get('categories/{category}', function(Category $category ){
     return view('forum', [
-        'posts' => $category->posts
+        'posts' => $category->posts->load(['category', 'user'])
     ]);
 
 });
+
+
+Route::get('authors/{user}', function(User $user ){
+    return view('forum', [
+        'posts' => $user->posts->load(['category', 'user'])
+    ]);
+
+});
+

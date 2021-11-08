@@ -14,16 +14,18 @@
 
 
 <div class="header">
-    <h2>CS:GO Forum</h2>
+    <a href="/" ><h2>CS:GO Forum</h2></a>
 </div>
-
+<form method="GET" action="#">
+<input type="text" name="search" placeholder="Find A Post">
+</form>
 <div class="row">
     <div class="leftcolumn">
         @foreach($posts as $post)
         <div class="card">
             <a href="/categories/{{$post->category->id}}">{{$post->category->name}}</a>
             <br><br>
-            writen by <a href="authors/{{$post->user->id}}">  {{$post ->user->name}}</a>
+            writen by <a href="/authors/{{$post->user->id}}">  {{$post ->user->name}}</a>
             <a href="/forum/{{$post->slug}}"> <h2>{{$post->title}}</h2>
                 <h5>{{$post->excerpt}}</h5>
             <div class="fakeimg" style="height:200px;">Image</div>

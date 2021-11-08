@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('forum', [
-        'posts' => Post::all()
+        'posts' => Post::latest() -> with('category', 'user')->get()
 
     ]);
 });
@@ -29,7 +30,7 @@ Route::get('forum/{post:slug}', function(Post $post){
 
 });
 
-Route::get('categories/{category}', function(\App\Models\Category $category ){
+Route::get('categories/{category}', function(Category $category ){
     return view('forum', [
         'posts' => $category->posts
     ]);

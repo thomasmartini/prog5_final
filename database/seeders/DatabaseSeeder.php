@@ -34,6 +34,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'Utility',
             'slug' => 'utility'
         ]);
+       $discussion = Category::create([
+          'name' => 'Discussion',
+          'slug' => 'discussion'
+
+       ]);
 
            Post::create([
                'user_id' => $user->id,
@@ -66,6 +71,14 @@ class DatabaseSeeder extends Seeder
             'slug' => 'new_molly',
             'excerpt' => 'lorem ipsum dolar sit amet',
             'body' => 'nog meer lorem ipsum maar dan is het de body'
+        ]);
+        Post::create([
+            'user_id' => $user->id,
+            'category_id' => $discussion->id,
+            'title' => 'S1mple goat?',
+            'slug' => 's1mple_goat',
+            'excerpt' => 'lorem ipsum dolar sit amet',
+            'body' => 'Is he really that good? I mean he has the same amount of majors as Devilwalk'
         ]);
        }
 

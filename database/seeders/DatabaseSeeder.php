@@ -59,6 +59,14 @@ class DatabaseSeeder extends Seeder
                'excerpt' => 'lorem ipsum dolar sit amet',
                'body' => 'nog meer lorem ipsum maar dan is het de body'
            ]);
+        Post::create([
+            'user_id' => $user->id,
+            'category_id' => $utility->id,
+            'title' => 'new molly',
+            'slug' => 'new_molly',
+            'excerpt' => 'lorem ipsum dolar sit amet',
+            'body' => 'nog meer lorem ipsum maar dan is het de body'
+        ]);
        }
 
 }

@@ -18,8 +18,10 @@
        <x-featured :post="$posts[0]"/>
 
         <div class="lg:grid lg:grid-cols-3">
+        @foreach($posts->skip(1) as $post)
+            <x-post-article :post="$post"/>
+            @endforeach
 
-            <x-post-article :post="$posts[1]"/>
         </div>
     </main>
 {{--

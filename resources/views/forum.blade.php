@@ -21,7 +21,8 @@
         @foreach($posts->skip(1) as $post)
             <x-post-article :post="$post"/>
             @endforeach
-{{--{{$posts->links()}}
+
+
         </div>
     </main>
 {{--

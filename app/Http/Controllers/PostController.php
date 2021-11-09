@@ -12,7 +12,7 @@ class PostController extends Controller
     {
 
         return view('forum', [
-            'posts' => Post::latest()->filter(\request(['search']))->get(),
+            'posts' => Post::latest()->filter(\request(['search', 'category']))->paginate(2),
             'categories' => Category::all()
 
         ]);

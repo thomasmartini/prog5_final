@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="">
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/forum.css') }}" />
 <head>
 
     <meta charset="UTF-8">
@@ -14,6 +13,7 @@
 
 <x-layout>
 @include('_posts-header')
+    @if($posts->count())
     <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
        <x-featured :post="$posts[0]"/>
 
@@ -22,6 +22,9 @@
             <x-post-article :post="$post"/>
             @endforeach
 
+            @else
+                <p>No posts found</p>
+@endif
 
         </div>
     </main>

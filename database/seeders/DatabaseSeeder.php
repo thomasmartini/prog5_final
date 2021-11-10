@@ -30,40 +30,40 @@ class DatabaseSeeder extends Seeder
             'name' => 'Highlights',
             'slug' => 'highlights'
         ]);
-       $utility = Category::create([
+        $utility = Category::create([
             'name' => 'Utility',
             'slug' => 'utility'
         ]);
-       $discussion = Category::create([
-          'name' => 'Discussion',
-          'slug' => 'discussion'
+        $discussion = Category::create([
+            'name' => 'Discussion',
+            'slug' => 'discussion'
 
-       ]);
+        ]);
 
-           Post::create([
-               'user_id' => $user->id,
-               'category_id' => $highlights->id,
-               'title' => 'first highlight',
-               'slug' => 'first_highlight',
-               'excerpt' => 'lorem ipsum dolar sit amet',
-               'body' => 'nog meer lorem ipsum maar dan is het de body'
-           ]);
-           Post::create([
-               'user_id' => $user->id,
-               'category_id' => $utility->id,
-               'title' => 'first smoke',
-               'slug' => 'first_smoke',
-               'excerpt' => 'lorem ipsum dolar sit amet',
-               'body' => 'nog meer lorem ipsum maar dan is het de body'
-           ]);
-           Post::create([
-               'user_id' => $user->id,
-               'category_id' => $tat->id,
-               'title' => 'first tip',
-               'slug' => 'first_tip',
-               'excerpt' => 'lorem ipsum dolar sit amet',
-               'body' => 'nog meer lorem ipsum maar dan is het de body'
-           ]);
+        Post::create([
+            'user_id' => $user->id,
+            'category_id' => $highlights->id,
+            'title' => 'first highlight',
+            'slug' => 'first_highlight',
+            'excerpt' => 'lorem ipsum dolar sit amet',
+            'body' => 'nog meer lorem ipsum maar dan is het de body'
+        ]);
+        Post::create([
+            'user_id' => $user->id,
+            'category_id' => $utility->id,
+            'title' => 'first smoke',
+            'slug' => 'first_smoke',
+            'excerpt' => 'lorem ipsum dolar sit amet',
+            'body' => 'nog meer lorem ipsum maar dan is het de body'
+        ]);
+        Post::create([
+            'user_id' => $user->id,
+            'category_id' => $tat->id,
+            'title' => 'first tip',
+            'slug' => 'first_tip',
+            'excerpt' => 'lorem ipsum dolar sit amet',
+            'body' => 'nog meer lorem ipsum maar dan is het de body'
+        ]);
         Post::create([
             'user_id' => $user->id,
             'category_id' => $utility->id,
@@ -80,6 +80,6 @@ class DatabaseSeeder extends Seeder
             'excerpt' => 'lorem ipsum dolar sit amet',
             'body' => 'Is he really that good? I mean he has the same amount of majors as Devilwalk'
         ]);
-       }
+    }
 
 }

@@ -10,7 +10,7 @@
         <div class="flex-1 flex flex-col justify-between">
             <header class="mt-8 lg:mt-0">
                 <div class="space-x-2">
-                    <a href="/categories/{{$post->category->id}}"
+                    <a href="/?category={{$post->category->slug}}"
                        class="px-3 py-1 border border-red-300 rounded-full text-red-300 text-xs uppercase font-semibold"
                        style="font-size: 10px">{{$post->category->name}}</a>
                 </div>
@@ -39,7 +39,7 @@
                 <div class="flex items-center text-sm">
                     <img src="/images/lary-avatar.svg" alt="Lary avatar">
                     <div class="ml-3">
-                        <h5 class="font-bold"><a href="/authors/{{$post->user->id}}">{{$post ->user->name}}</a></h5>
+                        <h5 class="font-bold"><a href="/authors/{{$post->user->username}}">{{$post ->user->username}}</a></h5>
 
                     </div>
                 </div>

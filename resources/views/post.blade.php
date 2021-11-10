@@ -9,10 +9,10 @@
                 </p>
 
                 <div class="flex items-center lg:justify-center text-sm mt-4">
-                    <a href="/authors/{{$post->user->id}}">
+                    <a href="/authors/{{$post->user->username}}">
                     <img src="/images/lary-avatar.svg" alt="Lary avatar">
                     <div class="ml-3 text-left">
-                        <h5 class="font-bold">{{$post->user->name}}</h5>
+                        <h5 class="font-bold">{{$post->user->username}}</h5>
                     </a>
 
                     </div>
@@ -39,7 +39,7 @@
                     </a>
 
                     <div class="space-x-2">
-                        <a href="/categories/{{$post->category->id}}"
+                        <a href="/?category={{$post->category->slug}}"
                            class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
                            style="font-size: 10px">{{$post->category->name}}</a>
                     </div>

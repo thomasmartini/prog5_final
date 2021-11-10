@@ -9,7 +9,7 @@
                 </p>
 
                 <div class="flex items-center lg:justify-center text-sm mt-4">
-                    <a href="/authors/{{$post->user->username}}">
+                    <a href="/?user={{$post->user->username}}">
                     <img src="/images/lary-avatar.svg" alt="Lary avatar">
                     <div class="ml-3 text-left">
                         <h5 class="font-bold">{{$post->user->username}}</h5>

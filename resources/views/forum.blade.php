@@ -27,7 +27,9 @@
 @endif
 
         </div>
+        {{$posts->links()}}
     </main>
+
 {{--
     <div class="header">
         <a href="/"><h2>CS:GO Forum</h2></a>

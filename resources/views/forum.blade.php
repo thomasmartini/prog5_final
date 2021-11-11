@@ -30,38 +30,6 @@
         {{$posts->links()}}
     </main>
 
-{{--
-    <div class="header">
-        <a href="/"><h2>CS:GO Forum</h2></a>
-    </div>
-    @foreach($categories as $category)
-        <a href="/categories/{{$category->id}}">{{$category->name}}</a>
-
-    @endforeach
-
-    <form method="GET" action="/">
-        @if(request('category'))
-            <input type="hidden" name="category" value="{{request('category')}}">
-        @endif
-        <input type="text" name="search" placeholder="Find A Post" value="{{request('search')}}">
-    </form>
-    <div class="row">
-        <div class="leftcolumn">
-            @foreach($posts as $post)
-                <div class="card">
-                    <a href="/categories/{{$post->category->id}}">{{$post->category->name}}</a>
-                    <br><br>
-                    written by <a href="/authors/{{$post->user->id}}">  {{$post ->user->name}}</a>
-                    <a href="/forum/{{$post->slug}}"><h2>{{$post->title}}</h2>
-                        <h5>{{$post->excerpt}}</h5>
-                        <div class="fakeimg" style="height:200px;">Image</div>
-
-                    </a>
-                </div>
-            @endforeach
-        </div>
-    </div>
-    {{$posts->links()}}--}}
 </x-layout>
 </body>
 </html>

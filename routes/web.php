@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PostController::class, 'index']);
 Route::get('forum/{post:slug}', [PostController::class, 'showPost']);
 
-Route::get('register', [RegisterController::class, 'create']);
+Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store']);
 
 

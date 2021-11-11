@@ -15,11 +15,13 @@
         </div>
 
         <div class="mt-8 md:mt-0">
-            <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+            @guest
+            <a href="/register" class="text-xs font-bold uppercase">Register</a>
 
-            <a href="/register" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+            <a href="/" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                 log-in
             </a>
+            @endguest
         </div>
     </nav>
 

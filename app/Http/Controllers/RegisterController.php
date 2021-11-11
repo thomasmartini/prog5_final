@@ -25,6 +25,8 @@ $attributes = \request()->validate([
     'password'=> 'required|max:255'
 ]);
 User::create($attributes);
-return redirect('/');
+
+
+return redirect('/') ->with('succes', 'your account has been created');
     }
 }

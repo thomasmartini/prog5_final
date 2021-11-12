@@ -3,7 +3,7 @@
     <div class="py-6 px-5">
         <div>
             <a href="/forum/{{$post->slug}}">
-            <img src="{{asset('storage/' . $post->thumbnail )}}"  alt="Blog Post illustration" class="rounded-xl">
+            <img src="{{asset('storage/' . $post->thumbnail )}}" onerror="this.style.display='none'" class="rounded-xl">
             </a>
         </div>
 

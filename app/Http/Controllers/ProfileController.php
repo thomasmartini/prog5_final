@@ -9,15 +9,15 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
     public function index(){
-      //if (auth()->id() != ) {
+      if (auth()->id() != implode(\request(['id']))) {
 
-        //    abort(403);
-        //}
-ddd(\request()->all());
+            abort(403);
+        }
+        else
         return view('profile', [
 
 
-            'posts' => Post::latest()->filter(\request(['search', 'category', 'user']))->paginate(20)->withQueryString(),
+            'posts' => Post::latest()->filter(\request(['search', 'category', 'user']))->paginate(10)->withQueryString(),
             'categories' => Category::all(),
 
         ]);

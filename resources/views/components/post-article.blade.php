@@ -29,7 +29,8 @@
 
             <div class="text-sm mt-4">
                 <p>
-                    {{$post->excerpt}}
+                    {{mb_strimwidth($post->body, 0, 100, "...")}}
+
                 </p>
 
 

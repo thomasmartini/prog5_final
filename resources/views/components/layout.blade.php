@@ -16,7 +16,8 @@
 
         <div class="mt-8 md:mt-0 flex items-center">
             @auth
-                <span class="text-xs font-bold uppercase"><a href="/profile" >{{auth()->user()->name}}</a></span>
+                <a href="/forum/posts/create" class="text-xs font-bold uppercase">Create Post</a>
+                <a href="/profile" class="text-xs font-bold uppercase px-3">{{auth()->user()->name}}</a>
                 <form method="POST" action="/logout" >
                   @csrf
 

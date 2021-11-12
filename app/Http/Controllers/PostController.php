@@ -12,7 +12,7 @@ class PostController extends Controller
     {
 
         return view('forum', [
-            'posts' => Post::latest()->filter(\request(['search', 'category','user']))->paginate(20)->withQueryString(),
+            'posts' => Post::latest()->filter(\request(['search', 'category', 'user']))->paginate(20)->withQueryString(),
             'categories' => Category::all(),
             'currentCategory' => Category::firstWhere('slug', \request('category'))
 
@@ -27,4 +27,16 @@ class PostController extends Controller
             'post' => $post
         ]);
     }
+
+    public function create()
+    {
+        if (auth()->guest()) {
+
+            abort(403);
+        }
+
+        return view('create');
+
+    }
 }
+

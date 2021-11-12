@@ -17,17 +17,17 @@ class RegisterController extends Controller
 
     public function store()
     {
-$attributes = \request()->validate([
+        $attributes = \request()->validate([
 
-    'name' => 'required|max:255',
-    'username' => ['required', 'max:255', Rule::unique('users', 'username')],
-    'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email' )],
-    'password'=> 'required|max:255'
-]);
-$user = User::create($attributes);
+            'name' => 'required|max:255',
+            'username' => ['required', 'max:255', Rule::unique('users', 'username')],
+            'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')],
+            'password' => 'required|max:255'
+        ]);
+        $user = User::create($attributes);
 
-auth()->login($user);
+        auth()->login($user);
 
-return redirect('/') ->with('succes', 'your account has been created');
+        return redirect('/')->with('succes', 'your account has been created');
     }
 }

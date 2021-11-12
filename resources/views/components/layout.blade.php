@@ -14,12 +14,22 @@
             </a>
         </div>
 
-        <div class="mt-8 md:mt-0">
+        <div class="mt-8 md:mt-0 flex items-center">
+            @auth
+                <span class="text-xs font-bold uppercase"><a href="/profile" >{{auth()->user()->name}}</a></span>
+                <form method="POST" action="/logout" >
+                  @csrf
+
+                    <button type="submit" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">log-out</button>
+
+                </form>
+
+            @endauth
             @guest
             <a href="/register" class="text-xs font-bold uppercase">Register</a>
 
-            <a href="/" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
-                log-in
+            <a href="/login" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                log In
             </a>
             @endguest
         </div>

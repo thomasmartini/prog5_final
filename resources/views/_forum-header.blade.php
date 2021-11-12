@@ -5,7 +5,7 @@
 
 
     <p class="text-sm mt-14">
-       A place to share your passion for CS:GO
+        A place to share your passion for CS:GO
     </p>
 
     <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-8">

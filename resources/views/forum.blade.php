@@ -19,7 +19,7 @@
 
         <div class="lg:grid lg:grid-cols-3">
         @foreach($posts->skip(1) as $post)
-            <x-post-article :post="$post"/>
+            <x-post-article :post="$post" />
             @endforeach
 
             @else

@@ -1,6 +1,6 @@
 <x-layout>
     <section class="px-6 py-8">
-<form method="post" action="/posting" class="max-w-sm mx-auto">
+<form method="POST" action="/forum/posts" class="max-w-sm mx-auto">
     @csrf
 
     <div class="mb-6">
@@ -32,10 +32,26 @@
             <textarea class="border border-gray-400 p-2 w-full"
                    name="body"
                    id="body"
-                   value="{{old('body')}}"
                    required
-            ></textarea>
+            >{{old('body')}}</textarea>
             @error('body')
+            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+            @enderror
+        </div>
+        <div class="mb-6 mt-6">
+            <label class="block mb-2  font-bold text-small text-gray-700"
+                   for="category_id"
+            >
+            Category
+
+            </label>
+
+            <select name="category_id" id="category_id">
+                @foreach(\App\Models\Category::all() as $category)
+                <option value="{{$category->id}}" {{old('category_id') == $category->id  ? 'selected' : ''}}>{{ ucwords($category->name)}}</option>
+                @endforeach
+            </select>
+            @error('category')
             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
             @enderror
         </div>
@@ -46,6 +62,7 @@
 
             submit
         </button>
+    </div>
 </form>
 
     </section>

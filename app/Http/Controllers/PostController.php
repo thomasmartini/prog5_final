@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -35,7 +37,28 @@ class PostController extends Controller
             abort(403);
         }
 
-        return view('create');
+        return view('create', [
+
+
+            'posts' => Post::latest()->filter(\request(['search', 'category', 'user']))->paginate(20)->withQueryString(),
+            'categories' => Category::all(),
+        ]);
+
+    }
+
+    public function store()
+    {
+        $attributes = \request()->validate([
+            "title" => 'required',
+            "body" => 'required',
+            "category_id" => ['required', Rule::exists('categories', 'id')]
+        ]);
+        $attributes['user_id'] = auth()->id();
+        $attributes['slug'] = Str::slug($attributes["title"], "-");
+
+        Post::create($attributes);
+
+        return redirect('/');
 
     }
 }

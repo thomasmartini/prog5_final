@@ -19,4 +19,4 @@ Route::post('login', [SessionController::class, 'store'])->middleware('guest');
 Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth');
 
 Route::get('forum/posts/create', [PostController::class, 'create']);
-
+Route::post('forum/posts', [PostController::class, 'store']);

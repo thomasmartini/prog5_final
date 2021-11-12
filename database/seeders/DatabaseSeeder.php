@@ -45,7 +45,6 @@ class DatabaseSeeder extends Seeder
             'category_id' => $highlights->id,
             'title' => 'first highlight',
             'slug' => 'first_highlight',
-            'excerpt' => 'lorem ipsum dolar sit amet',
             'body' => 'nog meer lorem ipsum maar dan is het de body'
         ]);
         Post::create([
@@ -53,7 +52,6 @@ class DatabaseSeeder extends Seeder
             'category_id' => $utility->id,
             'title' => 'first smoke',
             'slug' => 'first_smoke',
-            'excerpt' => 'lorem ipsum dolar sit amet',
             'body' => 'nog meer lorem ipsum maar dan is het de body'
         ]);
         Post::create([
@@ -61,7 +59,6 @@ class DatabaseSeeder extends Seeder
             'category_id' => $tat->id,
             'title' => 'first tip',
             'slug' => 'first_tip',
-            'excerpt' => 'lorem ipsum dolar sit amet',
             'body' => 'nog meer lorem ipsum maar dan is het de body'
         ]);
         Post::create([
@@ -69,7 +66,6 @@ class DatabaseSeeder extends Seeder
             'category_id' => $utility->id,
             'title' => 'new molly',
             'slug' => 'new_molly',
-            'excerpt' => 'lorem ipsum dolar sit amet',
             'body' => 'nog meer lorem ipsum maar dan is het de body'
         ]);
         Post::create([
@@ -77,7 +73,6 @@ class DatabaseSeeder extends Seeder
             'category_id' => $discussion->id,
             'title' => 'S1mple goat?',
             'slug' => 's1mple_goat',
-            'excerpt' => 'lorem ipsum dolar sit amet',
             'body' => 'Is he really that good? I mean he has the same amount of majors as Devilwalk'
         ]);
     }

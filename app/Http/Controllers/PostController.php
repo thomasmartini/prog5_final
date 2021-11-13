@@ -23,6 +23,10 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
+        if (auth()->id() != implode(\request(['user_id']))) {
+
+            abort(403);
+        }
         $post->delete();
         return redirect('/')->with('succes', 'post has been deleted');
 
@@ -36,6 +40,27 @@ class PostController extends Controller
 
             'post' => $post
         ]);
+    }
+
+    public function edit(Post $post)
+    {
+
+        return view('edit', ['post' => $post]);
+
+    }
+    public function update(Post $post){
+        $attributes = \request()->validate([
+            "thumbnail" => 'image',
+            "title" => 'required',
+            "body" => 'required',
+            "category_id" => ['required', Rule::exists('categories', 'id')]
+        ]);
+
+        if (\request(['thumbnail'])) {
+            $attributes['thumbnail'] = \request()->file('thumbnail')->store('thumbnails');
+        }
+        $post->update($attributes);
+        return back()->with('succes', 'Post updated');
     }
 
     public function create()
@@ -63,7 +88,10 @@ class PostController extends Controller
             "body" => 'required',
             "category_id" => ['required', Rule::exists('categories', 'id')]
         ]);
-        $attributes['thumbnail'] = \request()->file('thumbnail')->store('thumbnails');
+
+        if (\request(['thumbnail'])) {
+            $attributes['thumbnail'] = \request()->file('thumbnail')->store('thumbnails');
+        }
         $attributes['user_id'] = auth()->id();
         $attributes['slug'] = Str::slug($attributes["title"], "-");
 

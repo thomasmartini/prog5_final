@@ -5,7 +5,7 @@
     <div class="py-6 px-5 lg:flex">
         <div class="flex-1 lg:mr-8">
             <a href="/forum/{{$post->slug}}">
-                <img src="{{asset('storage/' . $post->thumbnail )}}"  alt="Blog Post illustration" class="rounded-xl">
+                <img src="{{asset('storage/' . $post->thumbnail )}}" onerror="this.style.display='none'" class="rounded-xl">
             </a>
         </div>
 
@@ -46,10 +46,37 @@
                     </div>
                 </div>
 
-                <div class="hidden lg:block">
+                <div>
+                    @if($post->user->id == auth()->id())
+
+
+                        <form method="GET" action="/forum/{{$post->id}}/edit">
+                            @csrf
+                            <button
+                                class="bg-blue-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 mt-3">
+                                Edit post
+                            </button>
+
+                        </form>
+                        <form method="POST" action="/forum/{{$post->id}}/delete">
+                            @csrf
+                            @method('DELETE')
+
+                            <button
+                                class="bg-red-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 mt-3">
+                                Delete post
+                            </button>
+
+                        </form>
+
+
+                        <br>
+
+                    @endif
                     <a href="/forum/{{$post->slug}}"
                        class="transition-colors duration-300 text-xs font-semibold bg-gray-200 hover:bg-gray-300 rounded-full py-2 px-8"
-                    >Read More</a>
+                    > Read More</a>
+
                 </div>
             </footer>
         </div>

@@ -61,7 +61,7 @@
                     <input type="hidden" name="category" value="{{request('category')}}">
                 @endif
                 @if(request('id'))
-                        <input type="hidden" name="id" value="{{request('id')}}">
+                        <input type="hidden" name="id" value="{{auth()->id()}}">
                     @endif
                 <input
                     type="text"

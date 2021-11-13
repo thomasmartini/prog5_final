@@ -3,11 +3,12 @@
     <div class="py-6 px-5">
         <div>
             <a href="/forum/{{$post->slug}}">
-            <img src="{{asset('storage/' . $post->thumbnail )}}" onerror="this.style.display='none'" class="rounded-xl">
+                <img src="{{asset('storage/' . $post->thumbnail )}}" onerror="this.style.display='none'"
+                     class="rounded-xl">
             </a>
         </div>
 
-        <div class="mt-8 flex flex-col justify-between" >
+        <div class="mt-8 flex flex-col justify-between">
             <header>
                 <div class="space-x-2">
                     <a href="/?category={{$post->category->slug}}"
@@ -42,15 +43,43 @@
                 <div class="flex items-center text-sm">
                     <img src="/images/lary-avatar.svg" alt="Lary avatar">
                     <div class="ml-3">
-                        <h5 class="font-bold"><a href="/?user={{$post->user->username}}">{{$post ->user->username}}</a></h5>
+                        <h5 class="font-bold"><a href="/?user={{$post->user->username}}">{{$post ->user->username}}</a>
+                        </h5>
 
                     </div>
                 </div>
 
                 <div>
+                    @if($post->user->id == auth()->id())
+
+
+                        <form method="GET" action="/forum/{{$post->id}}/edit">
+                            @csrf
+                            <button
+                                class="bg-blue-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 mt-3">
+                                Edit post
+                            </button>
+
+                        </form>
+                        <form method="POST" action="/forum/{{$post->id}}/delete">
+                            @csrf
+                            @method('DELETE')
+
+                            <button
+                                class="bg-red-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 mt-3">
+                                Delete post
+                            </button>
+
+                        </form>
+
+
+                        <br>
+
+                    @endif
                     <a href="/forum/{{$post->slug}}"
                        class="transition-colors duration-300 text-xs font-semibold bg-gray-200 hover:bg-gray-300 rounded-full py-2 px-8"
                     > Read More</a>
+
                 </div>
             </footer>
         </div>

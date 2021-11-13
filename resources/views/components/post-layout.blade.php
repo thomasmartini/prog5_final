@@ -24,7 +24,7 @@
                     <input type="hidden" value="{{auth()->id()}}" name="id" id="id">
                     @csrf
                     <button type="submit" class="text-xs font-bold uppercase py-3 px-3">
-                        {{auth()->user()->name}}</button>
+                        {{auth()->user()->username}}</button>
 
 
                 </form>

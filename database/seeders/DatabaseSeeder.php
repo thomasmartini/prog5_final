@@ -43,17 +43,18 @@ class DatabaseSeeder extends Seeder
 
         Post::create([
             'user_id' => $user->id,
-            'category_id' => $highlights->id,
-            'title' => 'first highlight',
+            'category_id' => $discussion->id,
+            'title' => 'We need to talk about the negev',
             'slug' => 'first_highlight',
-            'body' => 'nog meer lorem ipsum maar dan is het de body'
+            'body' => 'The negev has some serious problems and isnt viable in the game',
+            'thumbnail' => 'thumbnails/9arLyVaFtJ4tbkLJ7OLbHCDW2Gs6ul76KGKdf3Bc.jpg'
         ]);
         Post::create([
             'user_id' => $user->id,
             'category_id' => $utility->id,
             'title' => 'first smoke',
             'slug' => 'first_smoke',
-            'body' => 'nog meer lorem ipsum maar dan is het de body'
+            'body' => 'nog meer lorem ipsum maar dan is het de body',
         ]);
         Post::create([
             'user_id' => $user->id,
@@ -77,10 +78,10 @@ class DatabaseSeeder extends Seeder
             'body' => 'Is he really that good? I mean he has the same amount of majors as Devilwalk'
         ]);
         User::create([
-            'name' => 'Thomas martini',
-            'username' => 'MASTOH',
+            'name' => 'admin',
+            'username' => 'adminAccount',
             'role' => 'admin',
-            'email' => 'thomasmartini1999@gmail.com',
+            'email' => 'admin@admin.com',
             'email_verified_at' => now(),
             'password' => 'admin',
             'remember_token' => Str::random(10)

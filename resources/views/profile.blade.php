@@ -14,7 +14,7 @@
 <x-layout>
     <header class="max-w-xl mx-auto mt-20 text-center">
         <h1 class="text-4xl">
-            <span class="text-blue-500">Welcome {{ucwords(auth()->user()->name)}}</span>
+            <span class="text-blue-500">Welcome {{ucwords(auth()->user()->username)}}</span>
         </h1>
 
 

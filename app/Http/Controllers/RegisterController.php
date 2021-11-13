@@ -33,7 +33,6 @@ class RegisterController extends Controller
         $attributes['role'] = "admin";
         $user = User::create($attributes);
 
-        auth()->login($user);
 
         return redirect('/admin')->with('succes', 'your admin account has been created');
     }

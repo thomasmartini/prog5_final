@@ -34,7 +34,7 @@
                     <a class="block text-left px-3 text-small leading-7 hover:bg-gray-300 focus:bg-gray-300"
                        href="/">All</a>
                     @foreach($categories as $category)
-                        <a href="/?category={{$category->slug}}"
+                        <a href="?category={{$category->slug}}"
                            class="
                             block text-left px-3 text-small
                             leading-7 hover:bg-gray-300 focus:bg-gray-300
@@ -60,7 +60,9 @@
                 @if(request('category'))
                     <input type="hidden" name="category" value="{{request('category')}}">
                 @endif
-
+                @if(request('id'))
+                        <input type="hidden" name="id" value="{{request('id')}}">
+                    @endif
                 <input
                     type="text"
                     name="search"

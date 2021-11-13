@@ -5,21 +5,22 @@
                 <img src="{{asset('storage/' . $post->thumbnail)}}" alt="" class="rounded-xl">
 
                 <p class="mt-4 block text-gray-400 text-xs">
-                    Published <time>1 year ago</time>
+                    Published
+                    <time>1 year ago</time>
                 </p>
 
                 <div class="flex items-center lg:justify-center text-sm mt-4">
                     <a href="/?user={{$post->user->username}}">
-                    <img src="/images/lary-avatar.svg" alt="Lary avatar">
-                    <div class="ml-3 text-left">
-                        <h5 class="font-bold">{{$post->user->username}}</h5>
-                    </div>
+                        <img src="/images/lary-avatar.svg" alt="Lary avatar">
+                        <div class="ml-3 text-left">
+                            <h5 class="font-bold">{{$post->user->username}}</h5>
+                        </div>
                     </a>
 
-                    </div>
-
-                    </div>
                 </div>
+
+            </div>
+            </div>
             </div>
 
             <div class="col-span-8">
@@ -51,8 +52,25 @@
                 </h1>
 
                 <div class="space-y-4 lg:text-lg leading-loose">
-              {{ $post->body }}
+                    {{ $post->body }}
                 </div>
+
+                @if($post->user->id == auth()->id())
+                    <br>
+                    <div>
+
+                        <form method="POST" action="/forum/{{$post->id}}/delete">
+                            @csrf
+                            @method('DELETE')
+                            <button
+                                class="bg-blue-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                                delete post
+                            </button>
+
+                        </form>
+                    </div>
+
+                @endif
             </div>
         </article>
     </main>

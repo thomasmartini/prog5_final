@@ -21,5 +21,8 @@ Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth')
 
 Route::get('forum/posts/create', [PostController::class, 'create']);
 Route::post('forum/posts', [PostController::class, 'store']);
+Route::delete('forum/{post:id}/delete', [PostController::class, 'destroy']);
 
 Route::get('profile/{id}',[ProfileController::class, 'index']);
+
+

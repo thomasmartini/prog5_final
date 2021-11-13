@@ -21,6 +21,14 @@ class PostController extends Controller
         ]);
     }
 
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        return redirect('/')->with('succes', 'post has been deleted');
+
+
+    }
+
     public function showPost(Post $post)
     {
 

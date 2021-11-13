@@ -16,12 +16,11 @@ class ProfileController extends Controller
         else
         return view('profile', [
 
-
-            'posts' => Post::latest()->filter(\request(['search', 'category', 'user']))->paginate(10)->withQueryString(),
+            'posts' => Post::Where('user_id', \request(['id']))
+                ->filter(\request(['search', 'category', 'user']))->paginate(10)->withQueryString(),
             'categories' => Category::all(),
 
         ]);
-
     }
     //
 }

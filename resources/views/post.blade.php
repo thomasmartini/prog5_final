@@ -58,16 +58,25 @@
                 @if($post->user->id == auth()->id())
                     <br>
                     <div>
+                        <form method="GET" action="/forum/{{$post->id}}/edit">
+                            @csrf
+                            @method('PATCH')
+                            <button
+                                class="bg-blue-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 mt-5">
+                                Edit Post
+                            </button>
 
+                        </form>
                         <form method="POST" action="/forum/{{$post->id}}/delete">
                             @csrf
                             @method('DELETE')
                             <button
-                                class="bg-blue-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                                class="bg-red-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 mt-5">
                                 delete post
                             </button>
 
                         </form>
+
                     </div>
 
                 @endif

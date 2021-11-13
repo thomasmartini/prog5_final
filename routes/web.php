@@ -29,4 +29,5 @@ Route::patch('forum/posts/{post:id}', [PostController::class, 'update'])->middle
 Route::get('profile/{id}',[ProfileController::class, 'index'])->middleware('auth');
 
 Route::get('admin', [AdminController::class, 'index'])->middleware('admin');
+Route::patch('forum/posts/{post:id}/active', [PostController::class, 'active'])->middleware('admin');
 

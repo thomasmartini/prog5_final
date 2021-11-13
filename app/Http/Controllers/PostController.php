@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use function Composer\Autoload\includeFile;
 
 class PostController extends Controller
 {
@@ -14,7 +15,8 @@ class PostController extends Controller
     {
 
         return view('forum', [
-            'posts' => Post::latest()->filter(\request(['search', 'category', 'user']))->paginate(20)->withQueryString(),
+            'posts' => Post::latest()->Where('active', 1)
+                ->filter(\request(['search', 'category', 'user']))->paginate(10)->withQueryString(),
             'categories' => Category::all(),
             'currentCategory' => Category::firstWhere('slug', \request('category'))
 
@@ -25,6 +27,10 @@ class PostController extends Controller
     {
 
         $post->delete();
+        if (auth()->user()->username == 'MASTOH'){
+
+            return redirect('/admin')->with('succes', 'post has been deleted');
+        }
         return redirect('/')->with('succes', 'post has been deleted');
 
 
@@ -37,6 +43,17 @@ class PostController extends Controller
 
             'post' => $post
         ]);
+    }
+
+    public function active(Post $post){
+        if ($post->active){
+            Post::where('id',$post['id'])->update(['active' => false]);
+
+        }
+        else{
+            Post::where('id',$post['id'])->update(['active' => true]);
+        }
+        return back();
     }
 
     public function edit(Post $post)

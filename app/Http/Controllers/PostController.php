@@ -23,10 +23,7 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        if (auth()->id() != implode(\request(['user_id']))) {
 
-            abort(403);
-        }
         $post->delete();
         return redirect('/')->with('succes', 'post has been deleted');
 
@@ -60,7 +57,7 @@ class PostController extends Controller
             $attributes['thumbnail'] = \request()->file('thumbnail')->store('thumbnails');
         }
         $post->update($attributes);
-        return back()->with('succes', 'Post updated');
+        return redirect('forum/' . $post->slug)->with('succes', 'Post updated');
     }
 
     public function create()

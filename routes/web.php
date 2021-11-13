@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PostController;
 
 use App\Http\Controllers\ProfileController;
@@ -19,11 +20,13 @@ Route::post('login', [SessionController::class, 'store'])->middleware('guest');
 
 Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth');
 
-Route::get('forum/posts/create', [PostController::class, 'create']);
-Route::post('forum/posts', [PostController::class, 'store']);
-Route::delete('forum/{post:id}/delete', [PostController::class, 'destroy']);
-Route::get('forum/{post:id}/edit', [PostController::class, 'edit']);
-Route::patch('forum/posts/{post:id}', [PostController::class, 'update']);
-Route::get('profile/{id}',[ProfileController::class, 'index']);
+Route::get('forum/posts/create', [PostController::class, 'create'])->middleware('auth');
+Route::post('forum/posts', [PostController::class, 'store'])->middleware('auth');
+Route::delete('forum/{post:id}/delete', [PostController::class, 'destroy'])->middleware('auth');
+Route::get('forum/{post:id}/edit', [PostController::class, 'edit'])->middleware('auth');
+Route::patch('forum/posts/{post:id}', [PostController::class, 'update'])->middleware('auth');
 
+Route::get('profile/{id}',[ProfileController::class, 'index'])->middleware('auth');
+
+Route::get('admin', [AdminController::class, 'index'])->middleware('admin');
 

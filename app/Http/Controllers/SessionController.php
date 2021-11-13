@@ -20,7 +20,6 @@ class SessionController extends Controller
         ]);
         if (auth()->attempt($attributes)) {
             return redirect('/')->with('succes', 'Logged In');
-
         }
         return back()
             ->withInput()

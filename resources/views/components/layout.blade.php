@@ -16,7 +16,10 @@
 
         <div class="mt-8 md:mt-0 flex items-center">
             @auth
-                <a href="/forum/posts/create" class="text-xs font-bold uppercase">Create Post</a>
+                <a href="/forum/posts/create" class="text-xs font-bold uppercase px-3">Create Post</a>
+                @if(auth()->user()->role == 'admin')
+                <a href="/admin" class="text-xs font-bold uppercase">Admin</a>
+                @endif
             <form method="get" action="/profile/{{auth()->id()}}">
                 <input type="hidden" value="{{auth()->id()}}" name="id" id="id">
                 @csrf

@@ -14,6 +14,8 @@ Route::get('forum/{post:slug}', [PostController::class, 'showPost']);
 
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+Route::get('admin/register', [RegisterController::class, 'createAdmin'])->middleware('admin');
+Route::post('admin/register', [RegisterController::class, 'storeAdmin'])->middleware('admin');
 
 Route::get('login', [SessionController::class, 'create'])->middleware('guest');
 Route::post('login', [SessionController::class, 'store'])->middleware('guest');

@@ -27,7 +27,7 @@ class PostController extends Controller
     {
 
         $post->delete();
-        if (auth()->user()->username == 'MASTOH'){
+        if (auth()->user()->role == 'admin'){
 
             return redirect('/admin')->with('succes', 'post has been deleted');
         }

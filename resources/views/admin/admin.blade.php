@@ -12,9 +12,9 @@
 <body>
 
 <x-admin-layout>
+    <a href="/admin/register" class="text-xs font-bold uppercase px-3">Register new admin</a>
 
-
-    <div class="flex flex-col">
+    <div class="flex flex-col mt-5">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -34,9 +34,7 @@
                                 Status
                             </th>
 
-                            <th scope="col" class="relative px-6 py-3">
-                                <span class="sr-only">Edit</span>
-                            </th>
+
                         </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -46,14 +44,14 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 h-10 w-10">
-                                                <img class="h-10 w-10 rounded-full"
+                                                <a href="/forum/{{$post->slug}}"> <img class="h-10 w-10 rounded-full"
                                                      src="{{asset('storage/' . $post->thumbnail )}}"
-                                                     alt="">
+                                                                                       alt=""></a>
                                             </div>
                                             <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">
+                                                <a href="/forum/{{$post->slug}}"><div class="text-sm font-medium text-gray-900">
                                                     {{$post->title}}
-                                                </div>
+                                                    </div></a>
                                                 <div class="text-sm text-gray-500">
                                                     {{$post->user->username}}
                                                 </div>
@@ -61,8 +59,8 @@
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div
-                                            class="text-sm text-gray-900">{{mb_strimwidth($post->body, 0, 50, "...")}}</div>
+                                        <a href="/forum/{{$post->slug}}"> <div
+                                                class="text-sm text-gray-900">{{mb_strimwidth($post->body, 0, 50, "...")}}</div></a>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <form method="POST" action="/forum/posts/{{$post->id}}/active"
@@ -70,16 +68,14 @@
                                             @csrf
                                             @method('PATCH')
                                             @if($post->active)
-                                            <span
 
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                 <button type="submit">Active</button>
-                </span></form>
+                 <button type="submit" class="bg-green-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 mt-3">Active</button>
+                </form>
                                         @endif
                                         @if(! $post->active)
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-green-800">
-                                            <button type="submit">Not Active</button>
-                                            </span></form>
+
+                                            <button type="submit" class="bg-red-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 mt-3">Not Active</button>
+                                            </form>
                                             @endif
                                     </td>
                                     </td>
@@ -107,6 +103,7 @@
             {{$posts->links()}}
         </div>
     </div>
+
 </x-admin-layout>
 </body>
 </html>

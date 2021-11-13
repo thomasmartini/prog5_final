@@ -20,11 +20,11 @@ class AdminOnly
     public function handle(Request $request, Closure $next)
     {
 
-        if (auth()->guest() or auth()->user()->username != 'MASTOH') {
-            abort(403);
+        if (auth()->user()->username == 'MASTOH' or auth()->user()->role == 'admin') {
+            return $next($request);
         }
 
 
-        return $next($request);
+
     }
 }

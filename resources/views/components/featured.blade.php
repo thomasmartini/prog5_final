@@ -47,17 +47,9 @@
                 </div>
 
                 <div>
-                    @if($post->user->id == auth()->id())
+                    @if($post->user->id == auth()->id() or auth()->user()->role == 'admin')
 
 
-                        <form method="GET" action="/forum/{{$post->id}}/edit">
-                            @csrf
-                            <button
-                                class="bg-blue-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 mt-3">
-                                Edit post
-                            </button>
-
-                        </form>
                         <form method="POST" action="/forum/{{$post->id}}/delete">
                             @csrf
                             @method('DELETE')

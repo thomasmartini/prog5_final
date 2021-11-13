@@ -6,7 +6,7 @@
 
                 <p class="mt-4 block text-gray-400 text-xs">
                     Published
-                    <time>1 year ago</time>
+                    <time>{{$post->created_at->diffForHumans()}}</time>
                 </p>
 
                 <div class="flex items-center lg:justify-center text-sm mt-4">
@@ -55,18 +55,21 @@
                     {{ $post->body }}
                 </div>
 
-                @if($post->user->id == auth()->id())
+                @if($post->user->id == auth()->id() or auth()->user()->role == 'admin')
                     <br>
                     <div>
+                        @if($count >= 5 && $post->user->id == auth()->id())
                         <form method="GET" action="/forum/{{$post->id}}/edit">
                             @csrf
                             @method('PATCH')
+
                             <button
                                 class="bg-blue-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 mt-5">
                                 Edit Post
                             </button>
 
                         </form>
+                        @endif
                         <form method="POST" action="/forum/{{$post->id}}/delete">
                             @csrf
                             @method('DELETE')

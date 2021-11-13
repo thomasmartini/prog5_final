@@ -23,7 +23,7 @@
             <form method="get" action="/profile/{{auth()->id()}}">
                 <input type="hidden" value="{{auth()->id()}}" name="id" id="id">
                 @csrf
-                <button type="submit" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                <button type="submit" class="text-xs font-bold uppercase py-3 px-3">
                     {{auth()->user()->name}}</button>
 
             </form>

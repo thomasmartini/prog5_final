@@ -16,12 +16,16 @@
 
         <div class="mt-8 md:mt-0 flex items-center">
             @auth
-                <a href="/forum/posts/create" class="text-xs font-bold uppercase">Create Post</a>
+                <a href="/forum/posts/create" class="text-xs font-bold uppercase px-3">Create Post</a>
+                @if(auth()->user()->role == 'admin')
+                    <a href="/admin" class="text-xs font-bold uppercase">Admin</a>
+                @endif
                 <form method="get" action="/profile/{{auth()->id()}}">
                     <input type="hidden" value="{{auth()->id()}}" name="id" id="id">
                     @csrf
-                    <button type="submit" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                    <button type="submit" class="text-xs font-bold uppercase py-3 px-3">
                         {{auth()->user()->name}}</button>
+
 
                 </form>
 

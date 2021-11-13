@@ -15,6 +15,7 @@ class PostController extends Controller
     {
 
         return view('forum', [
+            'count' => Post::where('user_id', auth()->id())->count(),
             'posts' => Post::latest()->Where('active', 1)
                 ->filter(\request(['search', 'category', 'user']))->paginate(10)->withQueryString(),
             'categories' => Category::all(),
@@ -40,7 +41,7 @@ class PostController extends Controller
     {
 
         return view('post', [
-
+            'count' => Post::where('user_id', auth()->id())->count(),
             'post' => $post
         ]);
     }

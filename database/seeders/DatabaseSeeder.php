@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -74,6 +75,16 @@ class DatabaseSeeder extends Seeder
             'title' => 'S1mple goat?',
             'slug' => 's1mple_goat',
             'body' => 'Is he really that good? I mean he has the same amount of majors as Devilwalk'
+        ]);
+        User::create([
+            'name' => 'Thomas martini',
+            'username' => 'MASTOH',
+            'role' => 'admin',
+            'email' => 'thomasmartini1999@gmail.com',
+            'email_verified_at' => now(),
+            'password' => 'admin',
+            'remember_token' => Str::random(10)
+
         ]);
     }
 

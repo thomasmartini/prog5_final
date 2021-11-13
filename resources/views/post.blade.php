@@ -11,7 +11,6 @@
 
                 <div class="flex items-center lg:justify-center text-sm mt-4">
                     <a href="/?user={{$post->user->username}}">
-                        <img src="/images/lary-avatar.svg" alt="Lary avatar">
                         <div class="ml-3 text-left">
                             <h5 class="font-bold">{{$post->user->username}}</h5>
                         </div>
@@ -54,35 +53,36 @@
                 <div class="space-y-4 lg:text-lg leading-loose">
                     {{ $post->body }}
                 </div>
+                @auth()
+                    @if($post->user->id == auth()->id() or auth()->user()->role == 'admin')
+                        <br>
+                        <div>
+                            @if($count >= 5 && $post->user->id == auth()->id())
+                                <form method="GET" action="/forum/{{$post->id}}/edit">
+                                    @csrf
+                                    @method('PATCH')
 
-                @if($post->user->id == auth()->id() or auth()->user()->role == 'admin')
-                    <br>
-                    <div>
-                        @if($count >= 5 && $post->user->id == auth()->id())
-                        <form method="GET" action="/forum/{{$post->id}}/edit">
-                            @csrf
-                            @method('PATCH')
+                                    <button
+                                        class="bg-blue-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 mt-5">
+                                        Edit Post
+                                    </button>
 
-                            <button
-                                class="bg-blue-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 mt-5">
-                                Edit Post
-                            </button>
+                                </form>
+                            @endif
+                            @endauth
+                            <form method="POST" action="/forum/{{$post->id}}/delete">
+                                @csrf
+                                @method('DELETE')
+                                <button
+                                    class="bg-red-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 mt-5">
+                                    delete post
+                                </button>
 
-                        </form>
-                        @endif
-                        <form method="POST" action="/forum/{{$post->id}}/delete">
-                            @csrf
-                            @method('DELETE')
-                            <button
-                                class="bg-red-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 mt-5">
-                                delete post
-                            </button>
+                            </form>
 
-                        </form>
+                        </div>
 
-                    </div>
-
-                @endif
+                    @endif
             </div>
         </article>
     </main>

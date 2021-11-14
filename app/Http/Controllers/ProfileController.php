@@ -17,7 +17,7 @@ class ProfileController extends Controller
         return view('profile', [
 
             'posts' => Post::Where('user_id', \request(['id']))
-                ->filter(\request(['search', 'category', 'user']))->paginate(10)->withQueryString(),
+                ->filter(\request(['search', 'category', 'user']))->latest()->paginate(10)->withQueryString(),
             'categories' => Category::all(),
 
         ]);

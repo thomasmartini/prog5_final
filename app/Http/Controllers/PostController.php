@@ -59,23 +59,29 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
+        if (auth()->id() == $post->user_id) {
 
-        return view('edit', ['post' => $post]);
-
+            return view('edit', ['post' => $post]);
+        }
     }
     public function update(Post $post){
-        $attributes = \request()->validate([
-            "thumbnail" => 'image',
-            "title" => 'required',
-            "body" => 'required',
-            "category_id" => ['required', Rule::exists('categories', 'id')]
-        ]);
+        if (auth()->id() == $post->user_id) {
+            $attributes = \request()->validate([
+                "thumbnail" => 'image',
+                "title" => 'required',
+                "body" => 'required',
+                "category_id" => ['required', Rule::exists('categories', 'id')]
+            ]);
 
-        if (\request(['thumbnail'])) {
-            $attributes['thumbnail'] = \request()->file('thumbnail')->store('thumbnails');
+            if (\request(['thumbnail'])) {
+                $attributes['thumbnail'] = \request()->file('thumbnail')->store('thumbnails');
+            }
+            $post->update($attributes);
+            return redirect('forum/' . $post->slug)->with('succes', 'Post updated');
         }
-        $post->update($attributes);
-        return redirect('forum/' . $post->slug)->with('succes', 'Post updated');
+        else {
+            abort(403);
+        }
     }
 
     public function create()

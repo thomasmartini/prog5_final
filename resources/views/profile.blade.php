@@ -16,31 +16,83 @@
         <h1 class="text-4xl">
             <span class="text-blue-500">Welcome {{ucwords(auth()->user()->username)}}</span>
         </h1>
-
-
-        <p class="text-sm mt-14">
-            Here are all of your posts
-        </p>
-
-        <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-8">
-        </div>
     </header>
-    @if($posts->count())
-        <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
+    <section class="px-6 py-8 mt-10">
+        <main class="max-w-lg mx-auto">
+    <form method="POST" action="/profile/update" class="mt-10">
+        @csrf
+        @method("PATCH")
+        <div class="mb-6">
+            <label class="block mb-2 uppservase font-bold text-small text-gray-700"
+                   for="name"
+            >
+                name
 
+            </label>
+            <input class="border border-gray-400 p-2 w-full"
+                   type="text"
+                   placeholder="name"
+                   name="name"
+                   id="name"
+                   value="{{auth()->user()->name}}"
+                   required
+            >
+            @error('name')
+            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+            @enderror
 
-            <div class="lg:grid lg:grid-cols-3">
-                @foreach($posts as $post)
-                    <x-post-article :post="$post" />
-                @endforeach
+            <div class="mb-6 mt-6">
+                <label class="block mb-2 uppservase font-bold text-small text-gray-700"
+                       for="username"
+                >
+                    username
 
-                @else
-                    <p>No posts found</p>
-                @endif
-
+                </label>
+                <input class="border border-gray-400 p-2 w-full"
+                       type="text"
+                       placeholder="username"
+                       name="username"
+                       id="username"
+                       value="{{auth()->user()->username}}"
+                       required
+                >
+                @error('username')
+                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
             </div>
-            {{$posts->links()}}
+
+            <div class="mb-6 mt-6">
+                <label class="block mb-2 uppservase font-bold text-small text-gray-700"
+                       for="email"
+                >
+                    Email
+
+                </label>
+                <input class="border border-gray-400 p-2 w-full"
+                       type="email"
+                       placeholder="email"
+                       name="email"
+                       id="email"
+                       value="{{auth()->user()->email}}"
+                       required
+                >
+                @error('email')
+                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
+            </div>
+                <div class="mb-6">
+                    <button type="submit"
+                            class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500 mt-4">
+
+                        submit
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </form>
         </main>
+    </section>
 
 </x-layout>
 </body>
